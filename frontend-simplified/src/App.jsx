@@ -61,9 +61,18 @@ const App = () => {
             </RequireAuth>
           }
         />
-        <Route path="/edit-job/:id" element={<EditJobPage />} />
+        <Route
+          path="/edit-job/:id"
+          element={
+            <RequireAuth>
+              <EditJobPage />
+            </RequireAuth>
+          }
+        />
+    
         <Route path="/jobs/:id" element={<JobPage />} />
         <Route path="*" element={<NotFoundPage />} />
+
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Route>

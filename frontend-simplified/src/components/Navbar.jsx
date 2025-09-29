@@ -48,9 +48,12 @@ const Navbar = () => {
                 <NavLink to="/jobs" className={linkClass}>
                   Jobs
                 </NavLink>
-                <NavLink to="/add-job" className={linkClass}>
-                  Add Job
-                </NavLink>
+                {isAuthed && (
+                  <NavLink to="/add-job" className={linkClass}>
+                    Add Job
+                  </NavLink>
+                )}
+
                 {!isAuthed ? (
                   <>
                     <NavLink to="/signup" className={linkClass}>

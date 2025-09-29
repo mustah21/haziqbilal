@@ -30,14 +30,19 @@ const useLogin = (setIsAuthenticated) => {
         throw new Error("Invalid username or password");
       }
       const data = await response.json();
-      if (typeof setIsAuthenticated === "function") {
-        setIsAuthenticated(true);
-      }
+
+
       if (data?.token) {
         localStorage.setItem("token", data.token);
       }
       localStorage.setItem("user", JSON.stringify(data));
-      navigate("/add-job", { replace: true });
+      window.dispatchEvent(new Event("authChanged"));
+
+      if (typeof setIsAuthenticated === "function") {
+        setIsAuthenticated(true);
+      }
+      navigate('../add-job', { replace: true })
+
     } catch (err) {
       setError(err.message);
     } finally {
